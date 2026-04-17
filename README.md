@@ -20,6 +20,7 @@ Ensure that you have downloaded the entire dataset and models and place the data
 
 After downloading the dataset and pretrained models from the provided link, organize the files in your project directory as follows:
 
+```
 battery-gpt/
 │
 ├── data/
@@ -31,7 +32,7 @@ battery-gpt/
 ├── sample.py
 ├── README.md
 └── ...
-
+```
 
 ### Notes
 - The folders `battery`, `out-battery-all`, and `out-battery-46` are all included in the downloaded dataset.
