@@ -16,6 +16,30 @@ This project runs with a specific dataset and a series of pretrained models to f
 
 Ensure that you have downloaded the entire dataset and models and place the data files in the correct folder as specified in the project instructions.
 
+## Dataset Structure
+
+After downloading the dataset and pretrained models from the provided link, organize the files in your project directory as follows:
+
+battery-gpt/
+│
+├── data/
+│ ├── battery/
+│ └── out-battery-all/
+│
+├── out-battery-46/
+│
+├── sample.py
+├── README.md
+└── ...
+
+
+### Notes
+- The folders `battery`, `out-battery-all`, and `out-battery-46` are all included in the downloaded dataset.
+- Place:
+  - `battery/` and `out-battery-all/` inside the `data/` directory.
+  - `out-battery-46/` directly in the root of the project.
+- Ensure the folder names remain unchanged, as the code expects this exact structure.
+
 ## Quick Start
 
 Follow these steps to quickly start using the pre-trained `BatteryGPT` model to predict battery status with the provided Python script:
