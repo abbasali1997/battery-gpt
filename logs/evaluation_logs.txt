@@ -1,0 +1,90 @@
+D:\Projects\BatteryGPT\evaluate.py:137: SyntaxWarning: invalid escape sequence '\s'
+  sample_path = f"checklistData\samples_{i}.bin"
+cpu
+Device:  cpu
+Loaded cycles: (305, 1200, 3)
+D:\Projects\BatteryGPT\evaluate.py:46: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_new.cpp:256.)
+  cell = torch.tensor([v_img, i_img, t_img], dtype=torch.float32)
+CNN-LSTM input: torch.Size([303, 2, 3, 60, 60])
+
+Results for sample 1: 
+-------
+SOH predictions: 303
+SOH min/max: 0.8821191787719727 0.9999719858169556
+Knee index: 208
+Knee cycle approx: 208
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_1.npz
+===========================
+Loaded cycles: (302, 1200, 3)
+CNN-LSTM input: torch.Size([300, 2, 3, 60, 60])
+
+Results for sample 2:
+-------
+SOH predictions: 300
+SOH min/max: 0.8843799829483032 0.9995960593223572
+Knee index: 222
+Knee cycle approx: 222
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_2.npz
+===========================
+Loaded cycles: (304, 1200, 3)
+CNN-LSTM input: torch.Size([302, 2, 3, 60, 60])
+
+Results for sample 3:
+-------
+SOH predictions: 302
+SOH min/max: 0.8800897598266602 1.0001344680786133
+Knee index: 236
+Knee cycle approx: 236
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_3.npz
+===========================
+Loaded cycles: (308, 1200, 3)
+CNN-LSTM input: torch.Size([306, 2, 3, 60, 60])
+
+Results for sample 4:
+-------
+SOH predictions: 306
+SOH min/max: 0.884254515171051 1.0003087520599365
+Knee index: 248
+Knee cycle approx: 248
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_4.npz
+===========================
+Loaded cycles: (307, 1200, 3)
+CNN-LSTM input: torch.Size([305, 2, 3, 60, 60])
+
+Results for sample 5:
+-------
+SOH predictions: 305
+SOH min/max: 0.8834645748138428 1.001180648803711
+Knee index: 249
+Knee cycle approx: 249
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_5.npz
+===========================
+Loaded cycles: (306, 1200, 3)
+CNN-LSTM input: torch.Size([304, 2, 3, 60, 60])
+
+Results for sample 6:
+-------
+SOH predictions: 304
+SOH min/max: 0.8830934762954712 1.0000715255737305
+Knee index: 243
+Knee cycle approx: 243
+EOL index: None
+EOL cycle approx: None
+
+Saved: outputs/soh_results_samples_6.npz
+===========================
