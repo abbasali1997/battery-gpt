@@ -1,0 +1,39 @@
+Job ID: 22249381
+Node: gpu022
+Start time: Fri May 15 03:53:14 CEST 2026
+CUDA_VISIBLE_DEVICES: 0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+WARNING: using slow attention. Flash Attention atm needs PyTorch nightly and dropout=0.0
+number of parameters: 42.75M
+META PATH:  data/battery/meta.pkl
+Loading meta from data/battery/meta.pkl...
+Using device: cuda
+Checkpoint path: out-battery-46/current_ckpt.pt
+num_samples=10, max_new_tokens=1080000, temperature=0.8, top_k=200
+Resuming from 36000 prompt tokens
+Input tensor shape: (1, 36000)
+Saved checkpoint: 1116000 total tokens
+Saved: samples/long_generation_10cycles.pkl
+End time: Fri May 15 08:26:27 CEST 2026
