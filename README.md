@@ -57,6 +57,16 @@ Follow these steps to quickly start using the pre-trained `BatteryGPT` model to 
 ```
 $ python sample.py
 ```
+Or for faster results only starting from the 10th cycle, run:
+```
+$ python one_sample.py
+```
+
+## Our Training Script
+
+```
+$ python train_battrygpt.py
+```
 
 ## Acknowledgements
 
