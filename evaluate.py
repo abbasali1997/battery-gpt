@@ -25,22 +25,17 @@ ROW_PITCH = 2
 PITCH_NUM = int(math.sqrt(NUM * SW_SHAPE) / ROW_PITCH)  # 30
 
 
-def load_checklist_sample(path):
+def load_sample_tokens(path):
     with open(path, "rb") as f:
-        obj = pickle.load(f)
+        s = pickle.load(f)
 
-    if isinstance(obj, str):
-        tokens = np.array([int(x) for x in re.findall(r"-?\d+", obj)], dtype=np.float32)
-    else:
-        tokens = np.asarray(obj, dtype=np.float32).reshape(-1)
+    tokens = np.array([int(x) for x in re.findall(r"-?\d+", s)], dtype=np.int64)
 
-    tokens = tokens[: len(tokens) // TOKENS_PER_TIMESTEP * TOKENS_PER_TIMESTEP]
-    triples = tokens.reshape(-1, 3)
+    assert len(tokens) % 3600 == 0
+    assert len(tokens) % 3 == 0
 
-    n_cycles = triples.shape[0] // TIMESTEPS_PER_CYCLE
-    triples = triples[: n_cycles * TIMESTEPS_PER_CYCLE]
-
-    return triples.reshape(n_cycles, TIMESTEPS_PER_CYCLE, 3)
+    cycles = tokens.reshape(-1, 1200, 3)
+    return cycles
 
 
 def make_one_soh_input(v_win, i_win, t_win):
@@ -79,7 +74,6 @@ def build_soh_batch(cycles, stride=1200):
 
     return torch.cat(xs, dim=0), np.array(start_indices)
 
-
 def load_soh_model(ckpt_path, device):
     model = Net(
         cell_num=2,
@@ -89,12 +83,28 @@ def load_soh_model(ckpt_path, device):
         sequencen_len=20,
         n_class=1,
         mode="LSTM",
-    ).to(device)
+    )
 
     state = torch.load(ckpt_path, map_location=device)
     model.load_state_dict(state)
     model.eval()
     return model
+
+# def load_soh_model(ckpt_path, device):
+#     model = Net(
+#         cell_num=2,
+#         input_size=180,
+#         hidden_dim=25,
+#         num_layers=3,
+#         sequencen_len=20,
+#         n_class=4,
+#         mode="LSTM",
+#     ).to(device)
+#
+#     state = torch.load(ckpt_path, map_location=device)
+#     model.load_state_dict(state)
+#     model.eval()
+#     return model
 
 
 def predict_soh(model, x, device, batch_size=128):
@@ -103,8 +113,16 @@ def predict_soh(model, x, device, batch_size=128):
     with torch.no_grad():
         for start in range(0, x.shape[0], batch_size):
             xb = x[start:start + batch_size].to(device)
-            yb = model(xb).detach().cpu().reshape(-1)
-            preds.append(yb)
+
+            yb = model(xb).detach().cpu().numpy()
+
+            # Handles both n_class=1 and n_class=4 checkpoints
+            if yb.ndim == 2 and yb.shape[1] > 1:
+                yb = yb.mean(axis=1)
+            else:
+                yb = yb.reshape(-1)
+
+            preds.append(torch.tensor(yb))
 
     return torch.cat(preds).numpy()
 
@@ -129,17 +147,17 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print('Device: ', device.type)
 
-    samples = [1,2,3,4,5,6]
+    samples = [10]
     for i in samples:
         sample_path = f"checklistData\samples_{i}.bin"
 
-        cycles = load_checklist_sample(sample_path)
+        cycles = load_sample_tokens(sample_path)
         print("Loaded cycles:", cycles.shape)  # (num_cycles, 1200, 3)
 
         x, starts = build_soh_batch(cycles, stride=1200)
         print("CNN-LSTM input:", x.shape)      # (batch, 2, 3, 60, 60)
 
-        ckpt_path = r"Models\MIT_MODEL\CNN_LSTM\epoch_2040.params"
+        ckpt_path = r"Models/MIT_MODEL/CNN_LSTM/epoch_2040.params"
 
         model = load_soh_model(ckpt_path, device)
         soh = predict_soh(model, x, device)
